@@ -67,10 +67,6 @@
                 getBadge(div)(`https://img.shields.io/badge/published-${publishDate}-9cf?style=flat-square&color=lightgrey`);
             }
 
-
-
-            //?style=social&logo=appveyor
-
             const templateId = document.getElementById('dm-outer-wrapper')?.getAttribute('dmtemplateid');
             if(templateId)  getBadge(div)(`https://img.shields.io/badge/template-${templateId}-9cf?style=flat-square&color=lightgrey`);
 
