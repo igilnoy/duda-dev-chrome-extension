@@ -38,6 +38,7 @@
         }
 
         async function getSiteAlias() {
+            const Parameters = await retrieveParameters();
             return Parameters?.SiteAlias || '';
         }
 
