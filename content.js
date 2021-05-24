@@ -33,13 +33,10 @@
         }
 
         function getPublishDate() {
-            const regExp = /(PublicationDate: ).*2021/;
+            const regExp = /PublicationDate: '(.*)'/;
             const res = document.head.innerHTML.match(regExp);
-            if(res.length) {
-                return res[0].replace('PublicationDate: \'','');
-            } else {
-                return '';
-            }
+
+            return res?.[1] || '';
         }
 
         function getSiteAlias() {
