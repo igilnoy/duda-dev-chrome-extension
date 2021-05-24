@@ -16,6 +16,7 @@
 - show if site has critical css or custom code
 - link to site info
 - detect unoptimized images (bgImages not supported yet)
+- cleanCache
 - any more ideas ???
 
 
