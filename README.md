@@ -15,6 +15,7 @@
 - show which template is used
 - show if site has critical css or custom code
 - link to site info
+- detect unoptimized images (bgImages not supported yet)
 - any more ideas ???
 
 
