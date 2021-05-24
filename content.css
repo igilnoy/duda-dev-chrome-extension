@@ -13,3 +13,7 @@
 img {
     margin: 0 3px 3px 0;
 }
+
+img.unoptimized {
+    box-shadow: 0px 0px 0px 3px red;
+}
