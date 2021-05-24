@@ -72,10 +72,10 @@
             return Parameters?.SiteAlias || '';
         }
 
-        function appendLink(wrapper, url) {
+        function appendLink(wrapper, url, target = '_blank') {
             const a = document.createElement('a');
             a.setAttribute("href",url);
-            a.setAttribute("target",'_blank');
+            a.setAttribute("target",target);
 
             wrapper.append(a);
 
@@ -99,6 +99,8 @@
             if(siteAlias) {
                 appendBadge(appendLink(div, `https://admin.duda.co/admin/vaadin/siteinfo/${siteAlias}`))(`https://img.shields.io/badge/exportSite-${siteAlias}-9cf?color=important&style=flat-square`);
             }
+
+            appendBadge(appendLink(div, `${window.location.href}?_dm_clear_cache=true`, '_self'))(`https://img.shields.io/badge/cleanCache-9cf?color=important&style=flat-square`);
 
             const closeButton = getCloseButton();
             div.append(closeButton);
