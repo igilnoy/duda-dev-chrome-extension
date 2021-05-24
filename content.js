@@ -76,7 +76,7 @@
 
             const siteAlias = getSiteAlias();
             if(siteAlias) {
-                getBadge(getLink(div, `https://admin.duda.co/admin/vaadin/siteinfo/${siteAlias}`))(`https://img.shields.io/badge/exportSite-${siteAlias}-9cf?color=important`);
+                getBadge(getLink(div, `https://admin.duda.co/admin/vaadin/siteinfo/${siteAlias}`))(`https://img.shields.io/badge/exportSite-${siteAlias}-9cf?color=important&style=flat-square`);
             }
 
             const closeButton = getCloseButton();
