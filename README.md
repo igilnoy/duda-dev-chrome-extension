@@ -4,7 +4,7 @@
 
 ## How To Install
 
-- In your browser go to chrome://extensions/
+- In your browser go to [chrome://extensions](chrome://extensions)
 - click on the "Load unpacked" button
 - select the extension folder
 - browse to Duda website
