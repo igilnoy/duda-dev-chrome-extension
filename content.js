@@ -32,17 +32,13 @@
             }
         }
 
-        function getPublishDate() {
-            const regExp = /PublicationDate: '(.*)'/;
-            const res = document.head.innerHTML.match(regExp);
-
-            return res?.[1] || '';
+        async function getPublishDate() {
+            const Parameters = await retrieveParameters();
+            return Parameters?.PublicationDate || '';
         }
 
-        function getSiteAlias() {
-            const regExp = /SiteAlias: '(.*)'/;
-            const res = document.head.innerHTML.match(regExp);
-            return res?.[1] || '';
+        async function getSiteAlias() {
+            return Parameters?.SiteAlias || '';
         }
 
         function appendLink(wrapper, url) {
@@ -55,11 +51,11 @@
             return a;
         }
 
-        function render() {
+        async function render() {
             const div = createWrapper();
             appendBadge(div, 'criticalCss-true-green?style=flat-square&logo=CSS3','criticalCss-false-red?style=flat-square&logo=CSS3')(!!document.getElementById('criticalCss'));
             appendBadge(div, 'customCode-false-green?style=flat-square&logo=JavaScript','customCode-true-red?style=flat-square&logo=JavaScript')(!!document.head.innerHTML.indexOf('hasCustomCode: true'));
-            const publishDate = getPublishDate();
+            const publishDate = await getPublishDate();
             if(publishDate) {
                 appendBadge(div)(`https://img.shields.io/badge/published-${publishDate}-9cf?style=flat-square&color=lightgrey`);
             }
@@ -68,7 +64,7 @@
             const templateId = document.getElementById('dm-outer-wrapper')?.getAttribute('dmtemplateid');
             if(templateId)  appendBadge(div)(`https://img.shields.io/badge/template-${templateId}-9cf?style=flat-square&color=lightgrey`);
 
-            const siteAlias = getSiteAlias();
+            const siteAlias = await getSiteAlias();
             if(siteAlias) {
                 appendBadge(appendLink(div, `https://admin.duda.co/admin/vaadin/siteinfo/${siteAlias}`))(`https://img.shields.io/badge/exportSite-${siteAlias}-9cf?color=important&style=flat-square`);
             }
@@ -87,3 +83,19 @@
             render();
         }
 
+
+        function retrieveParameters() {
+            return new Promise(resolve => {
+                const s = document.createElement('script');
+                s.src = chrome.runtime.getURL('vars.js');
+                s.onload = function() {
+                    const params = document.body.getAttribute("tmp_Parameters");
+                    const result = JSON.parse(params);
+                    resolve(result)
+                    document.body.removeAttribute("tmp_Parameters");
+                    this.remove();
+                    
+                };
+                (document.head || document.documentElement).appendChild(s);
+            })
+        }
