@@ -12,5 +12,8 @@
       "css": ["content.css"]
     }
   ],
-  "permissions": ["activeTab", "<all_urls>"]
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "permissions": ["activeTab"]
 }
