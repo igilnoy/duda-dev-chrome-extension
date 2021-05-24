@@ -16,7 +16,7 @@
             return button;
         }
 
-        function getBadge (wrapper, ...versions) {
+        function appendBadge (wrapper, ...versions) {
             const imgElem = document.createElement('img');
 
             wrapper.append(imgElem);
@@ -48,7 +48,7 @@
             return res?.[1] || '';
         }
 
-        function getLink(wrapper, url) {
+        function appendLink(wrapper, url) {
             const a = document.createElement('a');
             a.setAttribute("href",url);
             a.setAttribute("target",'_blank');
@@ -60,19 +60,20 @@
 
         function render() {
             const div = createWrapper();
-            getBadge(div, 'criticalCss-true-green?style=flat-square&logo=CSS3','criticalCss-false-red?style=flat-square&logo=CSS3')(!!document.getElementById('criticalCss'));
-            getBadge(div, 'customCode-false-green?style=flat-square&logo=JavaScript','customCode-true-red?style=flat-square&logo=JavaScript')(!!document.head.innerHTML.indexOf('hasCustomCode: true'));
+            appendBadge(div, 'criticalCss-true-green?style=flat-square&logo=CSS3','criticalCss-false-red?style=flat-square&logo=CSS3')(!!document.getElementById('criticalCss'));
+            appendBadge(div, 'customCode-false-green?style=flat-square&logo=JavaScript','customCode-true-red?style=flat-square&logo=JavaScript')(!!document.head.innerHTML.indexOf('hasCustomCode: true'));
             const publishDate = getPublishDate();
             if(publishDate) {
-                getBadge(div)(`https://img.shields.io/badge/published-${publishDate}-9cf?style=flat-square&color=lightgrey`);
+                appendBadge(div)(`https://img.shields.io/badge/published-${publishDate}-9cf?style=flat-square&color=lightgrey`);
             }
 
+               
             const templateId = document.getElementById('dm-outer-wrapper')?.getAttribute('dmtemplateid');
-            if(templateId)  getBadge(div)(`https://img.shields.io/badge/template-${templateId}-9cf?style=flat-square&color=lightgrey`);
+            if(templateId)  appendBadge(div)(`https://img.shields.io/badge/template-${templateId}-9cf?style=flat-square&color=lightgrey`);
 
             const siteAlias = getSiteAlias();
             if(siteAlias) {
-                getBadge(getLink(div, `https://admin.duda.co/admin/vaadin/siteinfo/${siteAlias}`))(`https://img.shields.io/badge/exportSite-${siteAlias}-9cf?color=important&style=flat-square`);
+                appendBadge(appendLink(div, `https://admin.duda.co/admin/vaadin/siteinfo/${siteAlias}`))(`https://img.shields.io/badge/exportSite-${siteAlias}-9cf?color=important&style=flat-square`);
             }
 
             const closeButton = getCloseButton();
