@@ -7,7 +7,9 @@
 - In your browser go to chrome://extensions/
 - click on the "Load unpacked" button
 - select the extension folder
-- browser to Duda website
+- browse to Duda website
+
+
 
 
 
