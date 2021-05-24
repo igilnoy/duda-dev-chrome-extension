@@ -9,6 +9,13 @@
 - select the extension folder
 - browse to Duda website
 
+## Features
+
+- show last publish date of a site
+- show which template is used
+- show if site has critical css or custom code
+- link to site info
+- any more ideas ???
 
 
 
