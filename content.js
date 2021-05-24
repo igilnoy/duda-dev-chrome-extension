@@ -112,7 +112,7 @@
 
         if(!!document.getElementById('dmRoot')) {
             renderInfoPanel();
-            scanForUnoptimizedImages(document);
+            //scanForUnoptimizedImages(document);
             //scanForUnoptimizedBgImages(document)
         }
 
