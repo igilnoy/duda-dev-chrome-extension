@@ -37,6 +37,11 @@
             return Parameters?.PublicationDate || '';
         }
 
+        async function getHasCustomCode() {
+            const Parameters = await retrieveParameters();
+            return Parameters?.hasCustomCode;
+        }
+
         async function getSiteAlias() {
             const Parameters = await retrieveParameters();
             return Parameters?.SiteAlias || '';
@@ -55,13 +60,13 @@
         async function render() {
             const div = createWrapper();
             appendBadge(div, 'criticalCss-true-green?style=flat-square&logo=CSS3','criticalCss-false-red?style=flat-square&logo=CSS3')(!!document.getElementById('criticalCss'));
-            appendBadge(div, 'customCode-false-green?style=flat-square&logo=JavaScript','customCode-true-red?style=flat-square&logo=JavaScript')(!!document.head.innerHTML.indexOf('hasCustomCode: true'));
+            const hasCustomCode = await getHasCustomCode();
+            appendBadge(div, 'customCode-false-green?style=flat-square&logo=JavaScript','customCode-true-red?style=flat-square&logo=JavaScript')(!hasCustomCode);
             const publishDate = await getPublishDate();
             if(publishDate) {
                 appendBadge(div)(`https://img.shields.io/badge/published-${publishDate}-9cf?style=flat-square&color=lightgrey`);
             }
 
-               
             const templateId = document.getElementById('dm-outer-wrapper')?.getAttribute('dmtemplateid');
             if(templateId)  appendBadge(div)(`https://img.shields.io/badge/template-${templateId}-9cf?style=flat-square&color=lightgrey`);
 
